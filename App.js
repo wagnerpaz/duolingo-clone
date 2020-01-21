@@ -1,19 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet} from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import createMainBottomTabNavigator from './src/components/createMainBottomTabNavigator';
+import LessonsScreen from './src/screens/LessonsScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import LeagueScreen from './src/screens/LeagueScreen';
+import StoreScreen from './src/screens/StoreScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const tabNavigator = createMainBottomTabNavigator({
+  Lessons: LessonsScreen,
+  Profile: ProfileScreen,
+  League: LeagueScreen,
+  Store: StoreScreen,
 });
+
+const styles = StyleSheet.create({});
+
+export default createAppContainer(tabNavigator);

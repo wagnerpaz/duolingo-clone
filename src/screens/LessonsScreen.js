@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
 import {includeTabBarIcon} from '../components/TabBarIcon';
@@ -7,15 +7,19 @@ import LessonsHeader from '../components/LessonsHeader';
 
 const LessonsScreen = () => {
     return (
-        <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
+        <>
+            <SafeAreaView style={styles.content}>
+                <Text>Lessons Screen</Text>
+            </SafeAreaView>
             <LessonsHeader/>
-        </SafeAreaView>
+        </>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    content: {
+        position: 'relative',
+        paddingTop: 80,
     },
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {View, StyleSheet} from 'react-native';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 
 export default (RouteConfigs) => {
     const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export default (RouteConfigs) => {
             height: 80,
             borderTopWidth: 2,
             borderTopColor: '#DEDEDE',
-        },  
+        },
     });
 
     const tabNavigator = createBottomTabNavigator(RouteConfigs, {

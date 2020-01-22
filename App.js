@@ -1,8 +1,11 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {View, Animated, StyleSheet} from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
+import {VisualEffectsProvider} from './src/context/VisualEffectsContext';
 
 import createMainBottomTabNavigator from './src/components/createMainBottomTabNavigator';
 import LessonsScreen from './src/screens/LessonsScreen';
@@ -19,4 +22,12 @@ const tabNavigator = createMainBottomTabNavigator({
 
 const styles = StyleSheet.create({});
 
-export default createAppContainer(tabNavigator);
+const App = createAppContainer(tabNavigator);
+
+export default () => (
+  <SafeAreaProvider>
+    <VisualEffectsProvider>
+        <App/>
+    </VisualEffectsProvider>
+  </SafeAreaProvider>
+);

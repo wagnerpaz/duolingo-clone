@@ -3,15 +3,17 @@ import {View, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
 import {includeTabBarIcon} from '../components/TabBarIcon';
-import LessonsHeader from '../components/LessonsHeader';
 
-const LessonsScreen = () => {
+import useHeader from '../hooks/useHeader';
+
+const LessonsScreen = ({navigation}) => {
+    useHeader('lessons', navigation);
+
     return (
         <>
             <SafeAreaView style={styles.content}>
                 <Text>Lessons Screen</Text>
             </SafeAreaView>
-            <LessonsHeader/>
         </>
     );
 };

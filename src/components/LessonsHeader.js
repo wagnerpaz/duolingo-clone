@@ -1,14 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, Animated, TouchableOpacity, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
-import useVisualEffects from '../hooks/useVisualEffects';
+import ObfuscateContext from '../context/ObfuscatorContext'; 
+
 import useAnimationShowStyler from '../hooks/useAnimationShowStyler';
 
 import CountryFlagIcon from './CountryFlagIcon';
 import LessonScoreIcon from './LessonScoreIcon';
 
 const LessonsHeader = () => {
+    const {obfuscate, deobfuscate, addListener, removeListener} = useContext(ObfuscateContext);
+
+    useEffect(() => {
+        const listener = addListener(() => {
+            hidePanel();
+        });
+        return () => {
+            removeListener(listener);
+        }
+    }, []);
+
     const [panelScrollStyle, showPanel, hidePanel, panelShown] = useAnimationShowStyler({
         initialValue: -80,
         finalValue: 50,
@@ -18,21 +30,20 @@ const LessonsHeader = () => {
             return {top: value};
         },
     });
-    const [showDarkLayer, hideDarkLayer] = useVisualEffects();
 
     const panelPress = () => {
         if(!panelShown) {
             showPanel();
-            showDarkLayer();
+            obfuscate();
         }
         else {
             hidePanel();
-            hideDarkLayer();
+            deobfuscate();
         }
     };
     
     return (
-        <>
+        <View>
             <Animated.View style={{...styles.detailPanel, ...panelScrollStyle}}/>
             <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
                 <View style={styles.flagArea}>
@@ -46,7 +57,7 @@ const LessonsHeader = () => {
                     <LessonScoreIcon icon="jewel" color="#E10531" spacing={-2} iconSizing={-4}/>
                 </View>
             </SafeAreaView>
-        </>
+        </View>
     );
 };
 

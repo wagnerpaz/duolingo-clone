@@ -18,8 +18,8 @@ const LessonsScreen = () => {
 
 const styles = StyleSheet.create({
     content: {
-        position: 'relative',
         paddingTop: 80,
+        flex: 1,
     },
 });
 

@@ -81,8 +81,6 @@ const styles = StyleSheet.create({
         zIndex: 2,
         height: 130,
         backgroundColor: 'white',
-        borderBottomWidth: 1,
-        borderBottomColor: '#DEDEDE',
     }
 });
 

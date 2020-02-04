@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, Animated, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, Animated, TouchableOpacity, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
+import {useSafeArea} from 'react-native-safe-area-context';
 
 import ObfuscateContext from '../context/ObfuscatorContext'; 
 
@@ -8,8 +9,11 @@ import useAnimationShowStyler from '../hooks/useAnimationShowStyler';
 
 import CountryFlagIcon from './CountryFlagIcon';
 import LessonScoreIcon from './LessonScoreIcon';
+import LanguageScroll from './LanguageScroll';
 
 const LessonsHeader = () => {
+    const insets = useSafeArea();
+
     const {obfuscate, deobfuscate, addListener, removeListener} = useContext(ObfuscateContext);
 
     useEffect(() => {
@@ -23,7 +27,7 @@ const LessonsHeader = () => {
 
     const [panelScrollStyle, showPanel, hidePanel, panelShown] = useAnimationShowStyler({
         initialValue: -80,
-        finalValue: 50,
+        finalValue: 50 + insets.top,
         durationShow: 500,
         durationHide: 200,
         stylize: function (value) {
@@ -44,7 +48,9 @@ const LessonsHeader = () => {
     
     return (
         <View>
-            <Animated.View style={{...styles.detailPanel, ...panelScrollStyle}}/>
+            <Animated.View style={{...styles.detailPanel, ...panelScrollStyle}}>
+                <LanguageScroll/>
+            </Animated.View>
             <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
                 <View style={styles.flagArea}>
                     <TouchableOpacity onPress={panelPress}>

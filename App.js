@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+import { LessonsProvider } from './src/context/LessonsContext';
 import { HeaderProvider } from './src/context/HeaderContext';
 import { ObfuscatorProvider } from './src/context/ObfuscatorContext';
 
@@ -30,10 +31,12 @@ const App = createAppContainer(tabNavigator);
 
 export default () => (
   <SafeAreaProvider>
-    <HeaderProvider>
-      <ObfuscatorProvider highlighted={<Header/>}>
-          <App/>
-      </ObfuscatorProvider>
-    </HeaderProvider>
+    <LessonsProvider>
+      <HeaderProvider>
+        <ObfuscatorProvider highlighted={<Header/>}>
+            <App/>
+        </ObfuscatorProvider>
+      </HeaderProvider>
+    </LessonsProvider>
   </SafeAreaProvider>
 );

@@ -3,6 +3,7 @@ import {View, Text, Animated, TouchableOpacity, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {useSafeArea} from 'react-native-safe-area-context';
 
+import LessonsContext from '../context/LessonsContext';
 import ObfuscateContext from '../context/ObfuscatorContext'; 
 
 import useAnimationShowStyler from '../hooks/useAnimationShowStyler';
@@ -13,6 +14,8 @@ import LanguageScroll from './LanguageScroll';
 
 const LessonsHeader = () => {
     const insets = useSafeArea();
+
+    const {state: {enrolledLanguages}} = useContext(LessonsContext);
 
     const {obfuscate, deobfuscate, addListener, removeListener} = useContext(ObfuscateContext);
 
@@ -54,7 +57,7 @@ const LessonsHeader = () => {
             <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
                 <View style={styles.flagArea}>
                     <TouchableOpacity onPress={panelPress}>
-                        <CountryFlagIcon country="brazil"/>
+                        <CountryFlagIcon country={enrolledLanguages.find( language => language.current).id}/>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.countersArea}>

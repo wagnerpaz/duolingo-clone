@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, Image, StyleSheet} from 'react-native';
 
-const LanguageItem = ({item, selected}) => {
+const LanguageItem = ({item, onPress}) => {
     return (
-        <View style={styles.container}>
-            <View style={{...styles.selected, ...(!selected ? {borderWidth: 0} : null)}}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <View style={{...styles.selected, ...(!item.current ? {borderColor: 'white'} : null)}}>
                 <Image style={styles.image} source={item.image}/>
             </View>
             <Text>{item.text}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 

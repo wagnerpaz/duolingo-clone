@@ -1,38 +1,27 @@
-import React from 'react';
-import {View, Text, Image, FlatList,StyleSheet} from 'react-native';
+import React, { useContext } from 'react';
+import {View, Text, TouchableOpacity, Image, FlatList,StyleSheet} from 'react-native';
 
 import countryFlags from '../../res/flags/countryFlags';
+import LessonsContext from '../context/LessonsContext';
 
 import LanguageItem from './LanguageItem';
 
 const LanguageScroll = () => {
-    const data = [{
-        id: getFlag('brazil').country,
-        text: 'Portuguese',
-        image: getFlag('brazil').image,
-        selected: true,
-    }, {
-        id: getFlag('united-states-of-america').country,
-        text: 'English',
-        image: getFlag('united-states-of-america').image,
-    }, {
-        id: getFlag('spain').country,
-        text: 'Spanish',
-        image: getFlag('spain').image,
-    }, {
-        id: getFlag('japan').country,
-        text: 'Japanese',
-        image: getFlag('japan').image,
-    }];
+    const {state: {enrolledLanguages : data}, changeLanguage} = useContext(LessonsContext);
+    let flatList;
 
     return (
         <View style={styles.container}>
             <FlatList
+                ref={ref => flatList = ref}
                 horizontal
                 data={data}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
-                    <LanguageItem item={item} selected={item.selected}/>
+                    <LanguageItem item={item} onPress={() => {
+                        changeLanguage(item.id);
+                        flatList.scrollToIndex({animated: true, index: 0});
+                    }}/>
                 )}
                 showsHorizontalScrollIndicator={false}
             />

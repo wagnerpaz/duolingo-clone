@@ -1,6 +1,6 @@
 //https://www.flaticon.com/packs/countrys-flags/2
 
-export default [{
+const countryFlags = [{
     country: 'brazil',
     image: require('../../res/flags/brazil.png'),
 }, {
@@ -13,3 +13,9 @@ export default [{
     country: 'japan',
     image: require('../../res/flags/japan.png'),
 }];
+
+export default countryFlags;
+
+export const getFlag = id => {
+    return countryFlags.find((item) => item.country === id);
+};

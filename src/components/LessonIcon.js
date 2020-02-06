@@ -7,7 +7,7 @@ const LessonIcon = ({iconFont, iconName, iconSize, title, level}) => {
     return (
         <View style={styles.container}>
             <View style={styles.border}>
-                <View style={styles.center}>
+                <View style={{...styles.center, ...levelStyle(level)}}>
                     {getIcon(iconFont, iconName, iconSize)}
                 </View>
             </View>
@@ -19,6 +19,18 @@ const LessonIcon = ({iconFont, iconName, iconSize, title, level}) => {
         </View>
     );
 }
+
+levelStyle = (level) => {
+    switch(level) {
+        case 0 : return {backgroundColor: '#CE82FF'};
+        case 1 : return {backgroundColor: '#1CB0F6'};
+        case 2 : return {backgroundColor: '#78C800'};
+        case 3 : return {backgroundColor: '#FF4B4B'};
+        case 4 : return {backgroundColor: '#FF9600'};
+        case 5 : return {backgroundColor: '#FFD900'};
+        default : return {backgroundColor: 'magenta'};
+    }
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -38,7 +50,7 @@ const styles = StyleSheet.create({
     },
     center: {
         borderRadius: 180,
-        backgroundColor: 'red',
+        backgroundColor: 'magenta',
         width: 70,
         height: 70,
         justifyContent: 'center',
@@ -65,6 +77,7 @@ const styles = StyleSheet.create({
         top: 6,
         right: 11,
         fontWeight: 'bold',
+        color: '#CD7900',
     },
     text: {
         marginTop: 5,

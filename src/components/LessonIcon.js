@@ -3,14 +3,16 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 
 import {MaterialCommunityIcons, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 
-const LessonIcon = ({iconFont, iconName, iconSize, title, level}) => {
+import LessonProgressCircle from './LessonProgressCircle';
+
+const LessonIcon = ({iconFont, iconName, iconSize, title, level, progress = 0}) => {
     return (
         <View style={styles.container}>
-            <View style={styles.border}>
+            <LessonProgressCircle style={styles.border} progressCircleStyle={styles.progressCircle} progress={progress}>
                 <View style={{...styles.center, ...levelStyle(level)}}>
                     {getIcon(iconFont, iconName, iconSize)}
                 </View>
-            </View>
+            </LessonProgressCircle>
             <Text style={styles.text}>{title}</Text>
             <View style={styles.crown}>
                 <Image source={require('../../res/duo-crown.png')} style={styles.crownIcon}/>
@@ -40,13 +42,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     border: {
-        borderWidth: 8,
-        borderRadius: 180,
-        borderColor: '#E5E5E5',
-        width: 100,
-        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
+        width: 100,
+        height: 100,
+    },
+    progressCircle: {
+        borderWidth: 8,
+        borderColor: '#FFD900',
+        width: 100,
+        height: 100,
+        backgroundColor: '#E5E5E5',
     },
     center: {
         borderRadius: 180,

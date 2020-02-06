@@ -16,15 +16,15 @@ const LessonsScreen = ({navigation}) => {
                 <ScrollView>
                     <View style={styles.spacer}/>
                     <View style={styles.row}>
-                        <LessonIcon iconFont="MaterialCommunityIcons" iconName="egg-easter" title="Introdução" level={5}/>
+                        <LessonIcon iconFont="MaterialCommunityIcons" iconName="egg-easter" title="Introdução" level={5} progress={4/6}/>
                     </View>
                     <View style={styles.row}>
-                        <LessonIcon iconFont="Entypo" iconName="chat" iconSize={40} title="Saudações" level={2}/>
+                        <LessonIcon iconFont="Entypo" iconName="chat" iconSize={40} title="Saudações" level={2} progress={2/5}/>
                         <View style={styles.spacer}/>
-                        <LessonIcon iconFont="FontAwesome" iconName="plane" iconSize={45} title="Viagem" level={1}/>
+                        <LessonIcon iconFont="FontAwesome" iconName="plane" iconSize={45} title="Viagem" level={1} progress={1/6}/>
                     </View>
                     <View style={styles.row}>
-                        <LessonIcon iconFont="MaterialCommunityIcons" iconName="hamburger" iconSize={45} title="Cafeteria" level={3}/>
+                        <LessonIcon iconFont="MaterialCommunityIcons" iconName="hamburger" iconSize={45} title="Cafeteria" level={3} progress={4/5}/>
                         <View style={styles.spacer}/>
                         <LessonIcon iconFont="MaterialCommunityIcons" iconName="baby-buggy" iconSize={45} title="Famílias" level={4}/>
                     </View>

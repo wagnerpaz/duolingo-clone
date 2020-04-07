@@ -51,7 +51,7 @@ const LessonsHeader = () => {
     
     return (
         <View>
-            <Animated.View style={{...styles.detailPanel, ...panelScrollStyle}}>
+            <Animated.View style={[styles.detailPanel, panelScrollStyle]}>
                 <LanguageScroll/>
             </Animated.View>
             <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>

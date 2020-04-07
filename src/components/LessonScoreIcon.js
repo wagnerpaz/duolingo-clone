@@ -21,11 +21,11 @@ const renderIcon = (icon, color, sizing) => {
 };
 
 const iconStyle = (color, sizing) => {
-    return {...styles.icon, color: color, fontSize: styles.icon.fontSize + sizing};
+    return [styles.icon, {color: color, fontSize: 28 + sizing}];
 }
 
 const textStyle = (color, spacing) => {
-    return {...styles.counter, color: color, marginLeft: styles.counter.marginLeft + spacing};
+    return [styles.counter, {color: color, marginLeft: 5 + spacing}];
 }
 
 const styles = StyleSheet.create({

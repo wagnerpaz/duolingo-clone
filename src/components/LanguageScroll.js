@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import {View, Text, TouchableOpacity, Image, FlatList,StyleSheet} from 'react-native';
 
 import countryFlags from '../../res/flags/countryFlags';
@@ -8,19 +8,19 @@ import LanguageItem from './LanguageItem';
 
 const LanguageScroll = () => {
     const {state: {enrolledLanguages : data}, changeLanguage} = useContext(LessonsContext);
-    let flatList;
+    const flatList = useRef(null);
 
     return (
         <View style={styles.container}>
             <FlatList
-                ref={ref => flatList = ref}
+                ref={flatList}
                 horizontal
                 data={data}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
                     <LanguageItem item={item} onPress={() => {
                         changeLanguage(item.id);
-                        flatList.scrollToIndex({animated: true, index: 0});
+                        flatList.current.scrollToIndex({animated: true, index: 0});
                     }}/>
                 )}
                 showsHorizontalScrollIndicator={false}

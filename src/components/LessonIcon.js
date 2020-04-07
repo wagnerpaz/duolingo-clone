@@ -8,8 +8,18 @@ import LessonProgressCircle from './LessonProgressCircle';
 const LessonIcon = ({iconFont, iconName, iconSize, title, level, progress = 0}) => {
     return (
         <View style={styles.container}>
-            <LessonProgressCircle style={styles.border} progressCircleStyle={styles.progressCircle} progress={progress}>
-                <View style={{...styles.center, ...levelStyle(level)}}>
+            <LessonProgressCircle
+                style={styles.border}
+                progressCircleStyle={{
+                    borderWidth: 8,
+                    borderColor: '#FFD900',
+                    width: 100,
+                    height: 100,
+                    backgroundColor: '#E5E5E5',
+                }}
+                progress={progress}
+            >
+                <View style={[styles.center, levelStyle(level)]}>
                     {getIcon(iconFont, iconName, iconSize)}
                 </View>
             </LessonProgressCircle>
@@ -22,7 +32,7 @@ const LessonIcon = ({iconFont, iconName, iconSize, title, level, progress = 0}) 
     );
 }
 
-levelStyle = (level) => {
+const levelStyle = (level) => {
     switch(level) {
         case 0 : return {backgroundColor: '#CE82FF'};
         case 1 : return {backgroundColor: '#1CB0F6'};
@@ -46,13 +56,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 100,
         height: 100,
-    },
-    progressCircle: {
-        borderWidth: 8,
-        borderColor: '#FFD900',
-        width: 100,
-        height: 100,
-        backgroundColor: '#E5E5E5',
     },
     center: {
         borderRadius: 180,
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
 });
 
 const getIcon = (font, name, size) => {
-    const style = size ? {...styles.icon, fontSize: size} : styles.icon;
+    const style = size ? [styles.icon, {fontSize: size}] : styles.icon;
     switch(font) {
         case 'MaterialCommunityIcons':
             return <MaterialCommunityIcons style={style} name={name}/>;

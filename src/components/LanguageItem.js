@@ -4,7 +4,7 @@ import {View, TouchableOpacity, Text, Image, StyleSheet} from 'react-native';
 const LanguageItem = ({item, onPress}) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <View style={{...styles.selected, ...(!item.current ? {borderColor: 'white'} : null)}}>
+            <View style={[styles.selected, !item.current ? {borderColor: 'white'} : null]}>
                 <Image style={styles.image} source={item.image}/>
             </View>
             <Text>{item.text}</Text>

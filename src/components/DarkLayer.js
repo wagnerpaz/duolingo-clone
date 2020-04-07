@@ -4,7 +4,7 @@ import {TouchableWithoutFeedback, Animated, StyleSheet} from 'react-native';
 const LessonInfoDarkLayer = ({style, showing, onPress}) => {
     return showing ? 
         <TouchableWithoutFeedback style={styles.touchable} onPress={onPress}>
-            <Animated.View style={{...styles.fadedBackground, ...style}}/>
+            <Animated.View style={[styles.fadedBackground, style]}/>
         </TouchableWithoutFeedback>
     : null;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import {useSafeArea} from 'react-native-safe-area-context';
 
 import useAnimationShowStyler from '../hooks/useAnimationShowStyler';
@@ -41,7 +41,7 @@ export const ObfuscatorProvider = ({children, highlighted}) => {
                     {children}
                 </View>
                 <DarkLayer
-                    style={{...darkLayerAnimStyle, ...styles.darkLayer}}
+                    style={[darkLayerAnimStyle, styles.darkLayer]}
                     showing={showingDarkLayer}
                     onPress={() => {
                         hideDarkLayer();
@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         ...StyleSheet.absoluteFillObject,
     },
+    highlighted: {
+        ...Platform.select({
+            web: {
+              zIndex: 2,
+            }
+     }),
+    }
 });
 
 export default Context;

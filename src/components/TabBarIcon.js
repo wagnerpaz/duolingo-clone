@@ -5,11 +5,11 @@ import {Feather} from '@expo/vector-icons';
 const TabBarIcon = ({icon, focused, color}) => {
     return (
         <Feather
-            style={{
-                ...styles.tabBarIcon,
-                ...(color ? {color: color} : null),
-                ...(!focused ? styles.blurred : null)
-            }}
+            style={[
+                styles.tabBarIcon,
+                color ? {color: color} : null,
+                !focused ? styles.blurred : null
+            ]}
             name={icon}
         />
     );

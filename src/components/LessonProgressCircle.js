@@ -10,7 +10,7 @@ const LessonProgressCircle = ({children, style, progressCircleStyle = {}, progre
         borderColor: 0,
         backgroundColor: null,
     }
-    progressCircleStyle = {...defaults, ...progressCircleStyle};
+    // progressCircleStyle = {...defaults, ...progressCircleStyle};
     return (
         <CircleProgress
             style={style}
